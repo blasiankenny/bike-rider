@@ -47,7 +47,8 @@
     font-size: 120px;
 }
 
-.start-button-container{
+.start-button-container,
+.retry-button-container{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,23 +58,22 @@
 }
 
 .retry-button-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    display: none;
+    
+   display: flex;
+   justify-content: center;
+   z-index: 1;
 }
 
 
 
 .result-container{
+    margin-top: 10%;
     width: 100%;
-    height: 60%;
+    height: 80%;
     display: grid;
     grid-template-rows: 1fr 1fr;
+    justify-content: center;
     align-items: center;
-    position: absolute;   
     display: none;
 }
 
@@ -87,8 +87,9 @@
 }
 
 .retry-button{
+    height: 40%;
+    width: 100px;
     margin-top: 100px;
-    display: none;
 }
 
 

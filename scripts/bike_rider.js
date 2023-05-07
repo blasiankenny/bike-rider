@@ -147,6 +147,13 @@ function runInterval() {
             document.querySelector(".biker-img").style.top = "675px";
             document.querySelector(".distance-result").innerHTML = `${elapsedTime()} m`;
             document.querySelector(".retry-button").innerHTML = 'Retry';
+            document.querySelector(".result-container").style.display = "grid";
+            document.querySelector(".distance").innerHTML = "";
+            document.querySelector(".retry-button").addEventListener("click",()=>{
+                // Reload the current page
+                location.reload();
+
+            })
 
         }
         if (block13 > 700) {
