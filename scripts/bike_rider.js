@@ -1,188 +1,253 @@
+
+var startTime;
 let biker = document.querySelector(".biker-img");
 let blocks = document.querySelectorAll(".blocks");
-let distanceTook=0;
+let startButton = document.querySelector(".start-button");
+let jumpButton = document.querySelector(".jump-button-container button");
+const numOfBlocks = 100;
 
-document.querySelector(".start-button").addEventListener("click",runInterval);
-var startTime;
+setUp();
+generateFirstBlocks();
 
-document.querySelector(".jump-button-container button").addEventListener("click", jump);
+let intervalId;
 
 
 
+
+function setUp() {
+
+    //Activate buttons
+    startButton.addEventListener("click", runInterval);
+    jumpButton.addEventListener("click", jump);
+
+
+}
+
+// Make the charactor jump
 function jump() {
+
+
     if (biker.classList != "animate") {
-        
+
         biker.classList.add("animate");
-        document.querySelector(".jump-button-container button").addEventListener("click", doubleJump);
+
+        // Animate doubleJump only when jump is animated
+        jumpButton.addEventListener("click", doubleJump);
     }
 
+    // Wait 0.4 sec and remove jump animation and doubleJump button activation 
     setTimeout(() => {
         biker.classList.remove("animate");
-        document.querySelector(".jump-button-container button").removeEventListener("click", doubleJump);
+        jumpButton.removeEventListener("click", doubleJump);
     }, 400)
 
 }
 
-
+// Make the charactor double jump
 function doubleJump() {
-    if (biker.classList != "animateDoubleJump" && biker.classList.contains("animate")) {
-        if (biker.classList != "animate") {
-            biker.classList.remove("animate");
-        }
+
+    const bikerContainsDoubleJump = biker.classList.contains("animateDoubleJump")
+    const bikerContainsAnimate = biker.classList.contains("animate");
+
+    //Runs once after a small jump
+    if (!bikerContainsDoubleJump && bikerContainsAnimate) {
+
+        // if (biker.classList != "animate") {
+        //     biker.classList.remove("animate");
+        // }
         biker.classList.add("animateDoubleJump");
+
     }
 
+    // Wait 0.4 sec and remove doubleJump button activation and its animation 
     setTimeout(() => {
-        
-        document.querySelector(".jump-button-container button").removeEventListener("click", doubleJump);
+        jumpButton.removeEventListener("click", doubleJump);
         biker.classList.remove("animateDoubleJump");
-        
+
     }, 400)
 }
 
+
+// Make the charactor fall
 function fall() {
+
     if (biker.classList != "animateFalling") {
         biker.classList.add("animateFalling");
     }
+
+    //Wait for 0.5 sec and remove animateFalling
     setTimeout(() => {
         biker.classList.remove("animateFalling");
     }, 500)
 
 }
 
+
+// generate 100 blocks on the bottom
 function generateFirstBlocks() {
 
-    for (let i = 0; i < 101; i++) {
-        document.querySelector(".blocks").innerHTML += (`<div class="block block${i}"></div>`);
-        document.querySelector(`.block${i}`).style.marginTop = "100px";
+    let blocksDiv = document.querySelector(".blocks");
+
+    for (let i = 0; i <= numOfBlocks; i++) {
+
+        blocksDiv.innerHTML += (`<div class="block block${i}"></div>`);
+        const eachBlock = document.querySelector(`.block${i}`);
+        eachBlock.style.marginTop = "100px";
     }
 }
 
-generateFirstBlocks();
 
-
-
-
-// document.querySelector(`.block100`).style.marginTop=`${Math.round(Math.random()*295)}px`;
-document.querySelector(`.block100`).style.marginTop = `100px`;
-document.querySelector(".biker-img").style.top = document.querySelector(`.block13`).style.marginTop;
-var myBiker = document.getElementById("biker");
-myBiker.style.top = "250px";
-let isTimeoutRunning = false;
-let intervalId;
-let count = 3;
-
+// Starts after pressing start button
 function runInterval() {
-    
+
+    //gap will get bigger if you increase this
+    let gapCount = 3;
     startTime = new Date();
-    document.querySelector(".upper-screen").style.display = 'flex';
-    document.querySelector(".lower-screen").style.display = 'flex';
-    document.querySelector(".game-title-container").style.display = "none";
-    document.querySelector(".start-button-container").style.display = "none";
+
+    const upperScreen = document.querySelector(".upper-screen");
+    const lowerScreen = document.querySelector(".lower-screen");
+    upperScreen.style.display = 'flex';
+    lowerScreen.style.display = 'flex';
+
+    const gameTitleContainer = document.querySelector(".game-title-container");
+    const startButtonContainer = document.querySelector(".start-button-container");
+    gameTitleContainer.style.display = "none";
+    startButtonContainer.style.display = "none";
+
 
     intervalId = setInterval(() => {
-        
-        document.querySelector(".distance").innerHTML = `${elapsedTime()} m`;
-        let temp = document.querySelector(`.block100`).style.marginTop;
-        const block100 = document.querySelector(`.block100`);
-        // console.log(temp);
-        let ranNum = 0;
 
-        let maxChange = 10; // maximum amount that ranNum can change from the previous value
+        //Update distance
+        const distance = document.querySelector(".distance");
+        distance.innerHTML = `${elapsedTime()} m`;
 
+
+        const blockLast = document.querySelector(`.block100`);
+        let blockLastMarginTop = blockLast.style.marginTop;
+        // const block100 = document.querySelector(`.block100`);
+
+        // maximum amount that ranNum can change from the previous value
+        const maxChange = 10;
+
+        // new margin-top differnece value
         let change = Math.floor(Math.random() * (2 * maxChange + 1)) - maxChange;
 
-        ranNum = parseInt(temp) + change;
-        while (ranNum < temp - 30 || ranNum > temp + 30 || ranNum < 20 || ranNum > 320) {
-            change = Math.floor(Math.random() * (2 * maxChange + 1)) - maxChange;
-            ranNum = parseInt(temp) + change;
-        }
+        // random number to generate a new block
+        let ranNum = parseInt(blockLastMarginTop) + change;
 
-        block100.style.marginTop = `${ranNum}px`;
-
+        // random number to decide to create gap
         let ranNum2 = Math.floor(Math.random() * 30);
 
-        if (ranNum2 === 3 || count < 3) {
-            temp = "800px";
-            count--;
-            if (count === 0) {
-                count = 3;
+        // new block shouldn't be more than +/- 30px from the last block
+        // should be 20 <= ranNum < 320 
+        while (ranNum < blockLastMarginTop - 30 || ranNum > blockLastMarginTop + 30 || ranNum < 20 || ranNum > 320) {
+            change = Math.floor(Math.random() * (2 * maxChange + 1)) - maxChange;
+            ranNum = parseInt(blockLastMarginTop) + change;
+        }
+
+        // change last block's margin-top
+        blockLast.style.marginTop = `${ranNum}px`;
+
+        const maxGapLoop = 3
+        if (ranNum2 === maxGapLoop || gapCount < maxGapLoop) {
+            blockLastMarginTop = "800px";
+            gapCount--;
+
+            //stop generating gap once gapCount === 0 
+            if (gapCount === 0) {
+                gapCount = maxGapLoop;
             }
         }
 
 
+        for (let i = 0; i < numOfBlocks; i++) {
 
-
-        for (let i = 0; i < 100; i++) {
             const block = document.querySelector(`.block${i}`);
             const blockNext = document.querySelector(`.block${i + 1}`);
 
-
-
-
-            if (i === 99) {
-                block.style.marginTop = temp;
+            //assign the random number to the last block
+            if (i === numOfBlocks - 1) {
+                block.style.marginTop = blockLastMarginTop;
                 break;
             }
+
             block.style.marginTop = blockNext.style.marginTop;
         }
 
-        let block12 = parseInt(document.querySelector(`.block12`).style.marginTop);
-        let block13 = parseInt(document.querySelector(`.block13`).style.marginTop);
-        let block16 = parseInt(document.querySelector(`.block16`).style.marginTop);
-   
+        let bikerLeftBlock = parseInt(document.querySelector(`.block12`).style.marginTop);
+        let bikerOnBlock = parseInt(document.querySelector(`.block13`).style.marginTop);
+        let bikerRightBlock = parseInt(document.querySelector(`.block14`).style.marginTop);
+
 
         const myElement = document.getElementById("biker");
         const isAnimating = getComputedStyle(myElement).animationName === "jump";
         const isDoubleAnimating = getComputedStyle(myElement).animationName === "doubleJump";
 
-        
-        if (block13 > 700 && block12 + 150 <= parseInt(document.querySelector(`.biker-img`).style.top) && !isAnimating && !isDoubleAnimating) {
+        //check if biker is below the bikerLeftBlock they just passed
+        const isBikerBelowLastBlock = bikerLeftBlock + 150 <= parseInt(document.querySelector(`.biker-img`).style.top);
 
-            document.querySelector(".biker-img").style.transform = `rotate(60deg)`;
-            fall();
-            clearInterval(intervalId);
-            distanceTook = elapsedTime();
-            document.querySelector(".biker-img").style.left = "150px";
-            document.querySelector(".biker-img").style.top = "675px";
-            document.querySelector(".distance-result").innerHTML = `${elapsedTime()} m`;
-            document.querySelector(".retry-button").innerHTML = 'Retry';
-            document.querySelector(".result-container").style.display = "grid";
-            document.querySelector(".distance").innerHTML = "";
-            document.querySelector(".retry-button").addEventListener("click",()=>{
-                // Reload the current page
-                location.reload();
 
-            })
+        /* -------------------Judgement-----------------------*/
+        if (bikerOnBlock > 700 && isBikerBelowLastBlock && !isAnimating && !isDoubleAnimating)
+            fallAction();
 
-        }
-        if (block13 > 700) {
+        /*------------------------------------------------------ */
+
+        // if the charactor is animated, don't proceed
+        if (bikerOnBlock > 700) {
             return;
         }
 
-        document.querySelector(".biker-img").style.top = `${block13 + 150}px`;
+        //move the biker so it is on top of a block
+        biker.style.top = `${bikerOnBlock + 150}px`;
 
-
-        if (block13 < block16 && biker.classList != "animate" && biker.classList != "animateDoubleJump") {
+        if (bikerOnBlock < bikerRightBlock && biker.classList != "animate" && biker.classList != "animateDoubleJump") {
             document.querySelector(".biker-img").style.transform = `rotate(2deg)`;
-        } else if (block13 > block16 && biker.classList != "animate" && biker.classList != "animateDoubleJump") {
+        } else if (bikerOnBlock > bikerRightBlock && biker.classList != "animate" && biker.classList != "animateDoubleJump") {
             document.querySelector(".biker-img").style.transform = `rotate(-2deg)`;
         }
 
 
-        modifyJump(block13);
-        modifyDoubleJump(block13);
-        modifyFall(block13);
-        //modifyFall(block13);
+        modifyJump(bikerOnBlock);
+        modifyDoubleJump(bikerOnBlock);
+        modifyFall(bikerOnBlock);
     }, 50);
 }
 
 
 
 
+//if biker is off the cliff and not animated they're dead
+
+function fallAction() {
+    biker.style.transform = `rotate(60deg)`;
+    fall();
+    clearInterval(intervalId);
+    biker.style.left = "150px";
+    biker.style.top = "675px";
+
+    const distanceTopLeft = document.querySelector(".distance");
+    distanceTopLeft.innerHTML = "";
+
+    const distanceResult = document.querySelector(".distance-result");
+    distanceResult.innerHTML = `${elapsedTime()} m`;
+
+    const retryButton = document.querySelector(".retry-button");
+    const resultContainer = document.querySelector(".result-container");
+
+    retryButton.innerHTML = 'Retry';
+
+    resultContainer.style.display = "grid";
+
+    retryButton.addEventListener("click", () => {
+        // Reload the current page
+        location.reload();
+
+    })
+}
 
 function modifyJump(top) {
-    
+
 
     const styleSheet = [...document.styleSheets].find(
         (sheet) => sheet.href.endsWith("style_general.css")
@@ -194,12 +259,12 @@ function modifyJump(top) {
 
     keyframesRule.deleteRule("0%");
     keyframesRule.appendRule(`0% { top: ${top}px }`);
-    
+
     keyframesRule.deleteRule("30%");
-    keyframesRule.appendRule(`30% { top: ${top-10}px }`);
+    keyframesRule.appendRule(`30% { top: ${top - 10}px }`);
 
     keyframesRule.deleteRule("70%");
-    keyframesRule.appendRule(`70% { top: ${top-10}px }`);
+    keyframesRule.appendRule(`70% { top: ${top - 10}px }`);
 
     const landBlock4 = parseInt(document.querySelector(`.block20`).style.marginTop);
     const landBlock5 = parseInt(document.querySelector(`.block21`).style.marginTop);
@@ -249,7 +314,7 @@ function modifyJump(top) {
 }
 
 function modifyDoubleJump(top) {
-    
+
 
     const styleSheet = [...document.styleSheets].find(
         (sheet) => sheet.href.endsWith("style_general.css")
@@ -263,10 +328,10 @@ function modifyDoubleJump(top) {
     keyframesRule.appendRule(`0% { top: ${top}px }`);
 
     keyframesRule.deleteRule("30%");
-    keyframesRule.appendRule(`30% { top: ${top-120}px }`);
+    keyframesRule.appendRule(`30% { top: ${top - 120}px }`);
 
     keyframesRule.deleteRule("70%");
-    keyframesRule.appendRule(`70% { top: ${top-120}px }`);
+    keyframesRule.appendRule(`70% { top: ${top - 120}px }`);
 
     const landBlock4 = parseInt(document.querySelector(`.block26`).style.marginTop);
     const landBlock5 = parseInt(document.querySelector(`.block27`).style.marginTop);
@@ -339,10 +404,10 @@ function modifyFall() {
 
 // Calculate the elapsed time since the page was loaded
 function elapsedTime() {
-  var currentTime = new Date();
-  var timeDiff = currentTime - startTime; // Time difference in milliseconds
-  var seconds = Math.floor(timeDiff / 250); // Convert milliseconds to seconds
-  return seconds;
+    var currentTime = new Date();
+    var timeDiff = currentTime - startTime; // Time difference in milliseconds
+    var seconds = Math.floor(timeDiff / 250); // Convert milliseconds to seconds
+    return seconds;
 }
 
 // Call the elapsedTime function to get the time elapsed since the page was loaded
