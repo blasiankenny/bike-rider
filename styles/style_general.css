@@ -3,6 +3,11 @@
     padding: 0;
 }
 
+html, body {
+    touch-action: none;
+}
+  
+
 body{
     background-color: rgb(182, 182, 182);
     width: 100%;
