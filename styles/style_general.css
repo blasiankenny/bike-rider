@@ -8,6 +8,7 @@ body{
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
    
 }
 
@@ -304,7 +305,7 @@ p{
 
     #game-body{
 
-        width: 430px;
+        width: 400px;
         height: 780px;
         margin-top: -40px;
     }
