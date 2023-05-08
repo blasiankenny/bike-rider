@@ -6,6 +6,18 @@ let startButton = document.querySelector(".start-button");
 let jumpButton = document.querySelector(".jump-button-container button");
 const numOfBlocks = 100;
 
+const bgMusic = document.getElementById("bg-music");
+const joonOishize = document.getElementById("joon-oishize");
+const joonYabaize = document.getElementById("joon-yabaize");
+const joonScream = document.getElementById("joon-scream");
+const metalCrash = document.getElementById("metal-crash");
+
+bgMusic.pause();
+joonOishize.pause();
+joonYabaize.pause();
+joonScream.pause();
+metalCrash.pause();
+
 setUp();
 generateFirstBlocks();
 
@@ -30,6 +42,7 @@ function jump() {
     if (biker.classList != "animate") {
 
         biker.classList.add("animate");
+        joonYabaize.play();
 
         // Animate doubleJump only when jump is animated
         jumpButton.addEventListener("click", doubleJump);
@@ -56,6 +69,9 @@ function doubleJump() {
         //     biker.classList.remove("animate");
         // }
         biker.classList.add("animateDoubleJump");
+        joonYabaize.pause();
+        joonYabaize.currentTime = 0;
+        joonOishize.play();
 
     }
 
@@ -73,11 +89,13 @@ function fall() {
 
     if (biker.classList != "animateFalling") {
         biker.classList.add("animateFalling");
+        joonScream.play();
     }
 
     //Wait for 0.5 sec and remove animateFalling
     setTimeout(() => {
         biker.classList.remove("animateFalling");
+        metalCrash.play();
     }, 500)
 
 }
@@ -100,6 +118,8 @@ function generateFirstBlocks() {
 // Starts after pressing start button
 function runInterval() {
 
+
+    bgMusic.play();
     document.querySelector(".jump-button-container").style.display = "flex";
     //gap will get bigger if you increase this
     let gapCount = 3;
@@ -259,6 +279,8 @@ function fallAction() {
 
     document.getElementById("retry-button").addEventListener("click", ()=>{
         // Reload the current page
+        bgMusic.pause();
+
         location.reload();
 
     });
