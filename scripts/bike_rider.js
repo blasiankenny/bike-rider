@@ -24,8 +24,6 @@ generateFirstBlocks();
 let intervalId;
 
 
-
-
 function setUp() {
 
     //Activate buttons
@@ -110,13 +108,40 @@ function generateFirstBlocks() {
 
         blocksDiv.innerHTML += (`<div class="block block${i}"></div>`);
         const eachBlock = document.querySelector(`.block${i}`);
-        eachBlock.style.marginTop = "100px";
+
+        if (i % 15 === 0) {
+            eachBlock.style.marginTop = "100px";
+        } else {
+            eachBlock.style.marginTop = "101px";
+        }
+
     }
 }
 
 
 // Starts after pressing start button
 function runInterval() {
+
+
+    let count = 3;
+    let countDown = document.querySelector(".count-down");
+    let timer = setInterval(function () {
+        countDown.innerHTML = count;
+        count--;
+        if(count === -1){
+            countDown.innerHTML = "Go!";
+        }
+        if (count === -1) {
+            
+            setTimeout(() => {
+                clearInterval(timer);
+            countDown.innerHTML = "";
+            }, 500);
+            
+        }
+        
+    }, 1000);
+
 
 
     bgMusic.play();
@@ -134,6 +159,9 @@ function runInterval() {
     const startButtonContainer = document.querySelector(".start-button-container");
     gameTitleContainer.style.display = "none";
     startButtonContainer.style.display = "none";
+
+
+
 
 
     intervalId = setInterval(() => {
@@ -275,17 +303,18 @@ function fallAction() {
     retryButton.innerHTML = 'Menu';
 
     resultContainer.style.display = "grid";
+    jumpButton.removeEventListener("click", jump);
 
-
-    document.getElementById("retry-button").addEventListener("click", ()=>{
+    document.getElementById("retry-button").addEventListener("click", () => {
         // Reload the current page
+        
         bgMusic.pause();
 
         location.reload();
 
     });
- 
-    
+
+
 }
 
 function modifyJump(top) {
