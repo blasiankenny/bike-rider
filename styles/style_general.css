@@ -3,8 +3,12 @@
     padding: 0;
 }
 
-html, body {
+html, body ,.game-title-container{
     touch-action: none;
+}
+
+.start-button{
+        touch-action: pan-x pan-y;    
 }
   
 
