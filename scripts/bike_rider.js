@@ -1,5 +1,5 @@
 
-var startTime;
+let startTime;
 let biker = document.querySelector(".biker-img");
 let blocks = document.querySelectorAll(".blocks");
 let startButton = document.querySelector(".start-button");
@@ -100,6 +100,7 @@ function generateFirstBlocks() {
 // Starts after pressing start button
 function runInterval() {
 
+    document.querySelector(".jump-button-container").style.display = "flex";
     //gap will get bigger if you increase this
     let gapCount = 3;
     startTime = new Date();
@@ -129,7 +130,7 @@ function runInterval() {
         // maximum amount that ranNum can change from the previous value
         const maxChange = 10;
 
-        
+
         let ranNum = generateRanNum(blockLastMarginTop, maxChange);
 
 
@@ -185,6 +186,7 @@ function runInterval() {
 
         /* -------------------Judgement-----------------------*/
         if (bikerOnBlock > 700 && isBikerBelowLastBlock && !isAnimating && !isDoubleAnimating)
+            //if biker is off the cliff and not animated they're dead
             fallAction();
 
         /*------------------------------------------------------ */
@@ -233,7 +235,6 @@ function generateRanNum(blockLastMarginTop, maxChange) {
 }
 
 
-//if biker is off the cliff and not animated they're dead
 
 function fallAction() {
     biker.style.transform = `rotate(60deg)`;
@@ -251,15 +252,18 @@ function fallAction() {
     const retryButton = document.querySelector(".retry-button");
     const resultContainer = document.querySelector(".result-container");
 
-    retryButton.innerHTML = 'Retry';
+    retryButton.innerHTML = 'Menu';
 
     resultContainer.style.display = "grid";
 
-    retryButton.addEventListener("click", () => {
+
+    document.getElementById("retry-button").addEventListener("click", ()=>{
         // Reload the current page
         location.reload();
 
-    })
+    });
+ 
+    
 }
 
 function modifyJump(top) {
@@ -282,48 +286,51 @@ function modifyJump(top) {
     keyframesRule.deleteRule("70%");
     keyframesRule.appendRule(`70% { top: ${top - 10}px }`);
 
-    const landBlock4 = parseInt(document.querySelector(`.block20`).style.marginTop);
-    const landBlock5 = parseInt(document.querySelector(`.block21`).style.marginTop);
-    const landBlock6 = parseInt(document.querySelector(`.block22`).style.marginTop);
-    const landBlock7 = parseInt(document.querySelector(`.block23`).style.marginTop);
-    const landBlock8 = parseInt(document.querySelector(`.block24`).style.marginTop);
-    const landBlock9 = parseInt(document.querySelector(`.block25`).style.marginTop);
+    const landFirst = parseInt(document.querySelector(`.block20`).style.marginTop);
+    const landSecond = parseInt(document.querySelector(`.block21`).style.marginTop);
+    const landThird = parseInt(document.querySelector(`.block22`).style.marginTop);
+    const landForth = parseInt(document.querySelector(`.block23`).style.marginTop);
+    const landFifth = parseInt(document.querySelector(`.block24`).style.marginTop);
+    const landSixth = parseInt(document.querySelector(`.block25`).style.marginTop);
 
 
-    if (landBlock4 < 700) {
+
+    // successful jumps
+    if (landFirst < 700) {
         keyframesRule.deleteRule("100%");
-        keyframesRule.appendRule(`100% { top: ${landBlock4}px }`);
+        keyframesRule.appendRule(`100% { top: ${landFirst}px }`);
         return;
     }
 
-    if (landBlock5 < 700) {
+    if (landSecond < 700) {
         keyframesRule.deleteRule("100%");
-        keyframesRule.appendRule(`100% { top: ${landBlock5}px }`);
+        keyframesRule.appendRule(`100% { top: ${landSecond}px }`);
         return;
     }
-    if (landBlock6 < 700) {
+    if (landThird < 700) {
         keyframesRule.deleteRule("100%");
-        keyframesRule.appendRule(`100% { top: ${landBlock6}px }`);
+        keyframesRule.appendRule(`100% { top: ${landThird}px }`);
         return;
     }
-    if (landBlock7 < 700) {
+    if (landForth < 700) {
         keyframesRule.deleteRule("100%");
-        keyframesRule.appendRule(`100% { top: ${landBlock7}px }`);
+        keyframesRule.appendRule(`100% { top: ${landForth}px }`);
         return;
     }
-    if (landBlock8 < 700) {
+    if (landFifth < 700) {
         keyframesRule.deleteRule("100%");
-        keyframesRule.appendRule(`100% { top: ${landBlock8}px }`);
-        return;
-    }
-
-    if (landBlock9 < 700) {
-        keyframesRule.deleteRule("100%");
-        keyframesRule.appendRule(`100% { top: ${landBlock9}px }`);
+        keyframesRule.appendRule(`100% { top: ${landFifth}px }`);
         return;
     }
 
+    if (landSixth < 700) {
+        keyframesRule.deleteRule("100%");
+        keyframesRule.appendRule(`100% { top: ${landSixth}px }`);
+        return;
+    }
 
+
+    //fail jump
     keyframesRule.deleteRule("100%");
     keyframesRule.appendRule(`100% { top: ${top + 200}px }`);
 
@@ -349,43 +356,40 @@ function modifyDoubleJump(top) {
     keyframesRule.deleteRule("70%");
     keyframesRule.appendRule(`70% { top: ${top - 120}px }`);
 
-    const landBlock4 = parseInt(document.querySelector(`.block26`).style.marginTop);
-    const landBlock5 = parseInt(document.querySelector(`.block27`).style.marginTop);
-    const landBlock6 = parseInt(document.querySelector(`.block28`).style.marginTop);
-    const landBlock7 = parseInt(document.querySelector(`.block29`).style.marginTop);
-    const landBlock8 = parseInt(document.querySelector(`.block30`).style.marginTop);
-    // const landBlock9 = parseInt(document.querySelector(`.block25`).style.marginTop);
+    const landFirst = parseInt(document.querySelector(`.block26`).style.marginTop);
+    const landSecond = parseInt(document.querySelector(`.block27`).style.marginTop);
+    const landThird = parseInt(document.querySelector(`.block28`).style.marginTop);
+    const landForth = parseInt(document.querySelector(`.block29`).style.marginTop);
+    const landFifth = parseInt(document.querySelector(`.block30`).style.marginTop);
 
 
-
-    if (landBlock4 < 700) {
+    //successful jumps
+    if (landFirst < 700) {
         keyframesRule.deleteRule("100%");
-        keyframesRule.appendRule(`100% { top: ${landBlock4}px }`);
+        keyframesRule.appendRule(`100% { top: ${landFirst}px }`);
         return;
     }
 
-    if (landBlock5 < 700) {
+    if (landSecond < 700) {
         keyframesRule.deleteRule("100%");
-        keyframesRule.appendRule(`100% { top: ${landBlock5}px }`);
+        keyframesRule.appendRule(`100% { top: ${landSecond}px }`);
         return;
     }
-    if (landBlock6 < 700) {
+    if (landThird < 700) {
         keyframesRule.deleteRule("100%");
-        keyframesRule.appendRule(`100% { top: ${landBlock6}px }`);
+        keyframesRule.appendRule(`100% { top: ${landThird}px }`);
         return;
     }
-    if (landBlock7 < 700) {
+    if (landForth < 700) {
         keyframesRule.deleteRule("100%");
-        keyframesRule.appendRule(`100% { top: ${landBlock7}px }`);
+        keyframesRule.appendRule(`100% { top: ${landForth}px }`);
         return;
     }
-    if (landBlock8 < 700) {
+    if (landFifth < 700) {
         keyframesRule.deleteRule("100%");
-        keyframesRule.appendRule(`100% { top: ${landBlock8}px }`);
+        keyframesRule.appendRule(`100% { top: ${landFifth}px }`);
         return;
     }
-
-    
 
 }
 
@@ -409,11 +413,12 @@ function modifyFall() {
 }
 
 
-
 // Calculate the elapsed time since the page was loaded
 function elapsedTime() {
     var currentTime = new Date();
-    var timeDiff = currentTime - startTime; // Time difference in milliseconds
-    var seconds = Math.floor(timeDiff / 250); // Convert milliseconds to seconds
+    // Time difference in milliseconds
+    var timeDiff = currentTime - startTime;
+    // Convert milliseconds to seconds
+    var seconds = Math.floor(timeDiff / 250);
     return seconds;
 }
