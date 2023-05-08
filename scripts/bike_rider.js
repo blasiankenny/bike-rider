@@ -129,26 +129,20 @@ function runInterval() {
         // maximum amount that ranNum can change from the previous value
         const maxChange = 10;
 
-        // new margin-top differnece value
-        let change = Math.floor(Math.random() * (2 * maxChange + 1)) - maxChange;
+        
+        let ranNum = generateRanNum(blockLastMarginTop, maxChange);
 
-        // random number to generate a new block
-        let ranNum = parseInt(blockLastMarginTop) + change;
-
-        // random number to decide to create gap
-        let ranNum2 = Math.floor(Math.random() * 30);
-
-        // new block shouldn't be more than +/- 30px from the last block
-        // should be 20 <= ranNum < 320 
-        while (ranNum < blockLastMarginTop - 30 || ranNum > blockLastMarginTop + 30 || ranNum < 20 || ranNum > 320) {
-            change = Math.floor(Math.random() * (2 * maxChange + 1)) - maxChange;
-            ranNum = parseInt(blockLastMarginTop) + change;
-        }
 
         // change last block's margin-top
         blockLast.style.marginTop = `${ranNum}px`;
 
+        // random number to decide to create gap
+        let ranNum2 = Math.floor(Math.random() * 30);
+
         const maxGapLoop = 3
+
+
+        // generate new gap
         if (ranNum2 === maxGapLoop || gapCount < maxGapLoop) {
             blockLastMarginTop = "800px";
             gapCount--;
@@ -160,6 +154,8 @@ function runInterval() {
         }
 
 
+
+        //generate new blocks
         for (let i = 0; i < numOfBlocks; i++) {
 
             const block = document.querySelector(`.block${i}`);
@@ -202,19 +198,39 @@ function runInterval() {
         biker.style.top = `${bikerOnBlock + 150}px`;
 
         if (bikerOnBlock < bikerRightBlock && biker.classList != "animate" && biker.classList != "animateDoubleJump") {
-            document.querySelector(".biker-img").style.transform = `rotate(2deg)`;
-        } else if (bikerOnBlock > bikerRightBlock && biker.classList != "animate" && biker.classList != "animateDoubleJump") {
-            document.querySelector(".biker-img").style.transform = `rotate(-2deg)`;
-        }
 
+            document.querySelector(".biker-img").style.transform = `rotate(2deg)`;
+
+        } else if (bikerOnBlock > bikerRightBlock && biker.classList != "animate" && biker.classList != "animateDoubleJump") {
+
+            document.querySelector(".biker-img").style.transform = `rotate(-2deg)`;
+
+        }
 
         modifyJump(bikerOnBlock);
         modifyDoubleJump(bikerOnBlock);
         modifyFall(bikerOnBlock);
+
     }, 50);
 }
 
 
+function generateRanNum(blockLastMarginTop, maxChange) {
+    // new margin-top differnece value
+    let change = Math.floor(Math.random() * (2 * maxChange + 1)) - maxChange;
+
+    // random number to generate a new block
+    let ranNum = parseInt(blockLastMarginTop) + change;
+
+    // new block shouldn't be more than +/- 30px from the last block
+    // should be 20 <= ranNum < 320 
+    while (ranNum < blockLastMarginTop - 30 || ranNum > blockLastMarginTop + 30 || ranNum < 20 || ranNum > 320) {
+        change = Math.floor(Math.random() * (2 * maxChange + 1)) - maxChange;
+        ranNum = parseInt(blockLastMarginTop) + change;
+    }
+
+    return ranNum;
+}
 
 
 //if biker is off the cliff and not animated they're dead
@@ -369,15 +385,7 @@ function modifyDoubleJump(top) {
         return;
     }
 
-    // if (landBlock9 < 700) {
-    //     keyframesRule.deleteRule("100%");
-    //     keyframesRule.appendRule(`100% { top: ${landBlock9}px }`);
-    //     return;
-    // }
-
-
-    // keyframesRule.deleteRule("100%");
-    // keyframesRule.appendRule(`100% { top: ${top + 200}px }`);
+    
 
 }
 
@@ -409,5 +417,3 @@ function elapsedTime() {
     var seconds = Math.floor(timeDiff / 250); // Convert milliseconds to seconds
     return seconds;
 }
-
-// Call the elapsedTime function to get the time elapsed since the page was loaded
