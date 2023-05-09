@@ -300,7 +300,6 @@ p {
     display: none;
     position: absolute;
     margin-top: 50%;
-
 }
 
 .jump-button-container button {
@@ -334,7 +333,7 @@ p {
 
     .jump-button-container button {
         margin-top: 278px;
-        margin-left: 180px;
+        margin-left: 175px;
         width: 100px;
         height: 60px;
         font-size: 30px;
@@ -342,6 +341,14 @@ p {
         background-color: transparent;
         border-color: #808080;
 
+    }
+
+    .jump-button-container {
+        display: flex;
+        justify-content: center;
+        display: none;
+        position: absolute;
+        margin-top: 160px;
     }
 
     .game-title {
