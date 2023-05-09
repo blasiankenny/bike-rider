@@ -2,13 +2,13 @@
 
 ## Description
 
-- Motivation
+#### Motivation
   Since I have studied computer science at university as well as taught myself how to develop programs, I wanted to make use of it and create a complete project from scrach by muyself
-- Why I built this project
+#### Why I built this project
   I built this project because I thought I would be able to understand the structure/process of a simple game development. I recently learned JavaScript and was interested in developing a web application that's dynamic and interactive. I also hoped it would entertain users like my friends and family.
-- What it does
+#### What it does
   This is a simple game where a player character jumps over blocks moving at a constant pace. The game has a elapsed distance the player has been skating for, and the player loses the game if they fall off the blocks.
-- What I learned
+#### What I learned
   I learned how to write a simple game using HTML, CSS, and JavaScript, and the importance of trial and error when developing such a project. 
 
 
