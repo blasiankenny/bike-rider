@@ -1,29 +1,29 @@
-*{
+* {
     margin: 0;
     padding: 0;
     touch-action: none;
 }
 
-button{
+button {
 
     touch-action: pan-x pan-y;
 }
 
-.start-button{
-        touch-action: pan-x pan-y;    
+.start-button {
+    touch-action: pan-x pan-y;
 }
-  
 
-body{
+
+body {
     background-color: rgb(182, 182, 182);
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-   
+
 }
 
-.count-down-container{
+.count-down-container {
     position: absolute;
     width: 500px;
     display: flex;
@@ -32,17 +32,17 @@ body{
     justify-content: center;
     z-index: 1;
     margin-top: -250px;
-   
+
 }
 
-.count-down{
-    
+.count-down {
+
     font-size: 100px;
     width: 180px;
-    
+
 }
 
-#game-body{
+#game-body {
 
     width: 1100px;
     height: 780px;
@@ -53,7 +53,7 @@ body{
 }
 
 
-.screen{
+.screen {
     border: 3px solid black;
     width: 100%;
     height: 80%;
@@ -62,12 +62,12 @@ body{
     overflow: hidden;
     position: relative;
     background-image: url(../images/background.png);
-    
+
 }
 
 
 
-.start-menu{
+.start-menu {
     width: 100%;
     height: 100%;
     display: grid;
@@ -77,21 +77,21 @@ body{
 }
 
 
-.game-title-container{
+.game-title-container {
     display: flex;
     justify-content: center;
-    
+
 }
 
 
 
 .game-title,
-.distance-result{
+.distance-result {
     font-size: 120px;
 }
 
 .start-button-container,
-.retry-button-container{
+.retry-button-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,16 +100,16 @@ body{
     width: 100%;
 }
 
-.retry-button-container{
-    
-   display: flex;
-   justify-content: center;
-   z-index: 1;
+.retry-button-container {
+
+    display: flex;
+    justify-content: center;
+    z-index: 1;
 }
 
 
 
-.result-container{
+.result-container {
     margin-top: 10%;
     width: 100%;
     height: 80%;
@@ -123,7 +123,7 @@ body{
 
 
 
-.retry-button{
+.retry-button {
     border: 2px solid black;
     height: 30%;
     width: 20%;
@@ -143,14 +143,14 @@ body{
     cursor: pointer;
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-  }
-  
-  .retry-button:hover {
+}
+
+.retry-button:hover {
     background-color: #2980b9;
     transform: scale(1.1);
-  }
-  
-  
+}
+
+
 
 
 .start-button {
@@ -161,39 +161,41 @@ body{
     animation: pulse 1s ease-out infinite;
     font-size: 30px;
     cursor: pointer;
-  }
-  
-  @keyframes pulse {
+}
+
+@keyframes pulse {
     0% {
-      transform: scale(1);
+        transform: scale(1);
     }
+
     50% {
-      transform: scale(0.9);
+        transform: scale(0.9);
     }
+
     100% {
-      transform: scale(1);
+        transform: scale(1);
     }
-  }
+}
 
 
 
 
 
 /* -------------------upper-screen------------------- */
-p{
+p {
     display: inline-block;
     font-size: 35px;
     margin: 30px 0 0 30px;
 }
 
-.upper-screen{
+.upper-screen {
     display: flex;
     justify-content: space-between;
     height: 325px;
     display: none;
 }
 
-.sun-img{
+.sun-img {
     margin: 20px 20px 0 0;
     width: 80px;
     height: 80px;
@@ -204,46 +206,51 @@ p{
 
 
 /* -------------------lower-screen------------------- */
-.lower-screen{
+.lower-screen {
     /* max height for the blocks */
     height: 425px;
-    width: 1100px;;
+    width: 1100px;
+    ;
     overflow: hidden;
     display: none;
 }
 
-.blocks{
-    
+.blocks {
+
     display: flex;
-    margin-top:30px;
-    
+    margin-top: 30px;
+
 }
 
 
-.block
-{
+.block {
     background-color: black;
     width: 11px;
     height: 425px;
-    position: relative;    
+    position: relative;
     margin-top: 100px;
-    
+
 }
 
-.block100{
-    margin-top: 100px;
-}
-
-.block15{
+.block100 {
     margin-top: 100px;
 }
 
-@keyframes block{
-    0%{left:0;}
-    100%{left: -2000px;}
+.block15 {
+    margin-top: 100px;
 }
 
-.biker-img{
+@keyframes block {
+    0% {
+        left: 0;
+    }
+
+    100% {
+        left: -2000px;
+    }
+}
+
+.biker-img {
     width: 90px;
     position: absolute;
     top: 250px;
@@ -252,49 +259,52 @@ p{
     transition: transform 0.03s ease-in-out;
 }
 
-.animate{
+.animate {
     animation: jump 1s ease-in-out;
 }
 
-.animateDoubleJump{
+.animateDoubleJump {
     animation: doubleJump 0.6s ease-in-out;
-    
+
 }
 
-.animateFalling{
+.animateFalling {
     animation: fall 0.5s;
 }
 
-@keyframes jump{
-  
-}
+@keyframes jump {}
 
-@keyframes doubleJump{
-    
-}
+@keyframes doubleJump {}
 
 
 /* falling */
 
-@keyframes fall{
-    0%{top: 350px;}
-    
-    50%{left: 200px;}
-    
-    100%{top: 700px;}
+@keyframes fall {
+    0% {
+        top: 350px;
+    }
+
+    50% {
+        left: 200px;
+    }
+
+    100% {
+        top: 700px;
+    }
 }
 
 
 /*----------------- jump-button -------------------------*/
-.jump-button-container{
+.jump-button-container {
     display: flex;
     justify-content: center;
     display: none;
     position: absolute;
     margin-top: 50%;
+
 }
 
-.jump-button-container button{
+.jump-button-container button {
     margin-top: 40px;
     width: 300px;
     height: 100px;
@@ -303,38 +313,47 @@ p{
     background-color: #808080;
     color: white;
     cursor: pointer;
-    
-  }
-  
-  
+    z-index: 2;
 
-
-  @media only screen and (max-width: 600px) {
+}
 
 
 
 
-    #game-body{
+@media only screen and (max-width: 600px) {
 
-        width: 400px;
-        height: 780px;
-        margin-top: -40px;
+
+
+
+    #game-body {
+
+        width: 380px;
+        height: 760px;
+        margin-top: -20px;
     }
 
-    .jump-button-container button{
-        margin-top: 550px;
+    .jump-button-container button {
+        margin-top: 260px;
+        width: 120px;
+        height: 80px;
+        font-size: 30px;
+
     }
 
-    .game-title{
+    .game-title {
         text-align: center;
         margin-right: 30px;
     }
 
-    .result-container{
+    .result-container {
         margin-top: 100px;
+    }
+
+    .game-title {
+        font-size: 50px;
+        font-weight: bold;
     }
 
 
 
-  }
-
+}
