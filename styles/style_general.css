@@ -1,382 +1,330 @@
 * {
-    margin: 0;
-    padding: 0;
-    touch-action: none;
-    font-family: 'Darumadrop One', Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  touch-action: none;
+  font-family: "Darumadrop One", Arial, Helvetica, sans-serif;
 }
 
 button {
-
-    touch-action: pan-x pan-y;
+  touch-action: pan-x pan-y;
 }
 
 .start-button {
-    touch-action: pan-x pan-y;
+  touch-action: pan-x pan-y;
 }
 
-
 body {
-    background-color: rgb(182, 182, 182);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  background-color: rgb(182, 182, 182);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .count-down-container {
-    position: absolute;
-    width: 500px;
-    display: flex;
-    /* align-items: center; */
-    text-align: center;
-    justify-content: center;
-    z-index: 1;
-    margin-top: -250px;
-
+  position: absolute;
+  width: 500px;
+  display: flex;
+  /* align-items: center; */
+  text-align: center;
+  justify-content: center;
+  z-index: 1;
+  margin-top: -250px;
 }
 
 .count-down {
-
-    font-size: 100px;
-    width: 180px;
-
+  font-size: 100px;
+  width: 180px;
 }
 
 #game-body {
-
-    width: 1100px;
-    height: 780px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 1100px;
+  height: 780px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
 
 .screen {
-    border: 3px solid black;
-    width: 100%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    position: relative;
-    background-image: url(../images/background.png);
-
+  border: 3px solid black;
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  background-image: url(../images/background.png);
 }
-
-
 
 .start-menu {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-rows: 2fr 1fr;
-    align-items: center;
-    position: absolute;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  align-items: center;
+  position: absolute;
 }
-
 
 .game-title-container {
-    display: flex;
-    justify-content: center;
-
+  display: flex;
+  justify-content: center;
 }
-
-
 
 .game-title,
 .distance-result {
-    font-size: 120px;
+  font-size: 120px;
 }
 
 .start-button-container,
 .retry-button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -10%;
-    height: 100%;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10%;
+  height: 100%;
+  width: 100%;
 }
 
 .retry-button-container {
-
-    display: flex;
-    justify-content: center;
-    z-index: 1;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
 }
-
-
 
 .result-container {
-    margin-top: 10%;
-    width: 100%;
-    height: 80%;
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    justify-content: center;
-    align-items: center;
-    display: none;
-}
-
-
-
-
-.retry-button {
-    border: 2px solid black;
-    height: 30%;
-    width: 20%;
-    font-size: 100%;
-    cursor: pointer;
+  margin-top: 10%;
+  width: 100%;
+  height: 80%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  display: none;
 }
 
 .retry-button {
-    height: 60%;
-    width: 150px;
-    margin-top: 100px;
-    font-size: 24px;
-    border-radius: 10px;
-    border: none;
-    background-color: #3498db;
-    color: #fff;
-    cursor: pointer;
-    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
+  border: 2px solid black;
+  height: 30%;
+  width: 20%;
+  font-size: 100%;
+  cursor: pointer;
+}
+
+.retry-button {
+  height: 60%;
+  width: 150px;
+  margin-top: 100px;
+  font-size: 24px;
+  border-radius: 10px;
+  border: none;
+  background-color: #3498db;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 .retry-button:hover {
-    background-color: #2980b9;
-    transform: scale(1.1);
+  background-color: #2980b9;
+  transform: scale(1.1);
 }
 
-
-
-
 .start-button {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: white;
-    animation: pulse 1s ease-out infinite;
-    font-size: 30px;
-    cursor: pointer;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: white;
+  animation: pulse 1s ease-out infinite;
+  font-size: 30px;
+  cursor: pointer;
 }
 
 @keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
+  }
 
-    50% {
-        transform: scale(0.9);
-    }
+  50% {
+    transform: scale(0.9);
+  }
 
-    100% {
-        transform: scale(1);
-    }
+  100% {
+    transform: scale(1);
+  }
 }
-
-
-
-
 
 /* -------------------upper-screen------------------- */
 p {
-    display: inline-block;
-    font-size: 35px;
-    margin: 30px 0 0 30px;
+  display: inline-block;
+  font-size: 35px;
+  margin: 30px 0 0 30px;
 }
 
 .upper-screen {
-    display: flex;
-    justify-content: space-between;
-    height: 325px;
-    display: none;
+  display: flex;
+  justify-content: space-between;
+  height: 325px;
+  display: none;
 }
 
 .sun-img {
-    margin: 20px 20px 0 0;
-    width: 80px;
-    height: 80px;
+  margin: 20px 20px 0 0;
+  width: 80px;
+  height: 80px;
 }
-
-
-
-
 
 /* -------------------lower-screen------------------- */
 .lower-screen {
-    /* max height for the blocks */
-    height: 425px;
-    width: 1100px;
-    overflow: hidden;
-    display: none;
+  /* max height for the blocks */
+  height: 425px;
+  width: 1100px;
+  overflow: hidden;
+  display: none;
 }
 
 .blocks {
-
-    display: flex;
-    margin-top: 30px;
-
+  display: flex;
+  margin-top: 30px;
 }
 
-
 .block {
-    background-color: black;
-    width: 11px;
-    height: 425px;
-    position: relative;
-    margin-top: 100px;
-
+  background-color: black;
+  width: 11px;
+  height: 425px;
+  position: relative;
+  margin-top: 100px;
 }
 
 .block100 {
-    margin-top: 100px;
+  margin-top: 100px;
 }
 
 .block15 {
-    margin-top: 100px;
+  margin-top: 100px;
 }
 
 @keyframes block {
-    0% {
-        left: 0;
-    }
+  0% {
+    left: 0;
+  }
 
-    100% {
-        left: -2000px;
-    }
+  100% {
+    left: -2000px;
+  }
 }
 
 .biker-img {
-    width: 90px;
-    position: absolute;
-    top: 250px;
-    left: 100px;
-    z-index: 1;
-    transition: transform 0.03s ease-in-out;
+  width: 90px;
+  position: absolute;
+  top: 250px;
+  left: 100px;
+  z-index: 1;
+  transition: transform 0.03s ease-in-out;
 }
 
 .animate {
-    animation: jump 1s ease-in-out;
+  animation: jump 1s ease-in-out;
 }
 
 .animateDoubleJump {
-    animation: doubleJump 0.6s ease-in-out;
-
+  animation: doubleJump 0.6s ease-in-out;
 }
 
 .animateFalling {
-    animation: fall 0.5s;
+  animation: fall 0.5s;
 }
 
-@keyframes jump {}
+@keyframes jump {
+}
 
-@keyframes doubleJump {}
-
+@keyframes doubleJump {
+}
 
 /* falling */
 
 @keyframes fall {
-    0% {
-        top: 350px;
-    }
+  0% {
+    top: 350px;
+  }
 
-    50% {
-        left: 200px;
-    }
+  50% {
+    left: 200px;
+  }
 
-    100% {
-        top: 700px;
-    }
+  100% {
+    top: 700px;
+  }
 }
-
 
 /*----------------- jump-button -------------------------*/
 .jump-button-container {
+  display: flex;
+  justify-content: center;
+  display: none;
+  position: absolute;
+  margin-top: 50%;
+}
+
+.jump-button-container button {
+  margin-top: 40px;
+  width: 300px;
+  height: 100px;
+  font-size: 50px;
+  border: 3px solid black;
+  background-color: #808080;
+  color: white;
+  cursor: pointer;
+  z-index: 2;
+}
+
+@media only screen and (max-width: 600px) {
+  #game-body {
+    width: 335px;
+    height: 670px;
+    margin-top: -20px;
+  }
+
+  .jump-button-container button {
+    margin-top: 330px;
+    width: 150px;
+    height: 60px;
+    font-size: 30px;
+    color: #808080;
+    background-color: transparent;
+    border-color: #808080;
+  }
+
+  .jump-button-container {
     display: flex;
     justify-content: center;
     display: none;
     position: absolute;
-    margin-top: 50%;
-}
+    margin-top: 100px;
+  }
 
-.jump-button-container button {
-    margin-top: 40px;
-    width: 300px;
-    height: 100px;
+  .game-title {
+    text-align: center;
+    margin-right: 30px;
     font-size: 50px;
-    border: 3px solid black;
-    background-color: #808080;
-    color: white;
-    cursor: pointer;
-    z-index: 2;
+    font-weight: bold;
+  }
 
-}
+  .result-container {
+    margin-top: 100px;
+  }
 
+  .distance-result {
+    font-size: 70px;
+  }
 
+  .lower-screen {
+    margin-top: -140px;
+    margin-right: 50px;
+  }
 
-
-@media only screen and (max-width: 600px) {
-
-
-
-
-    #game-body {
-
-        width: 335px;
-        height: 670px;
-        margin-top: -20px;
-        
-    }
-
-
-    .jump-button-container button {
-        margin-top: 330px;
-        width: 150px;
-        height: 60px;
-        font-size: 30px;
-        color: #808080;
-        background-color: transparent;
-        border-color: #808080;
-
-    }
-
-    .jump-button-container {
-        display: flex;
-        justify-content: center;
-        display: none;
-        position: absolute;
-        margin-top: 100px;
-    }
-
-    .game-title {
-        text-align: center;
-        margin-right: 30px;
-        font-size: 50px;
-        font-weight: bold;
-    }
-
-    .result-container {
-        margin-top: 100px;
-    }
-
-    .distance-result{
-        font-size: 70px;
-    }
-
-    .lower-screen {
-        margin-top: -140px;
-        margin-right: 50px;
-    }
-
-    .biker-img {
-        width: 65px;
-        margin-top: -100px;
-        
-    }
-
-
+  .biker-img {
+    width: 65px;
+    margin-top: -100px;
+  }
 }
