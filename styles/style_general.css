@@ -328,14 +328,14 @@ p {
     #game-body {
 
         width: 380px;
-        height: 760px;
-        margin-top: -20px;
+        height: 850px;
+        margin-top: -60px;
     }
 
 
     .jump-button-container button {
         margin-top: 320px;
-        margin-left: 270px;
+        margin-left: 240px;
         width: 100px;
         height: 60px;
         font-size: 30px;
