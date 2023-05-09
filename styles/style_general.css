@@ -334,7 +334,8 @@ p {
 
 
     .jump-button-container button {
-        margin-top: 300px;
+        margin-top: 320px;
+        margin-left: 270px;
         width: 100px;
         height: 60px;
         font-size: 30px;
