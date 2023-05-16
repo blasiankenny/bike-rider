@@ -26,6 +26,18 @@ function setUp() {
   //Activate buttons
   startButton.addEventListener("click", runInterval);
   jumpButton.addEventListener("click", jump);
+  document.addEventListener("keydown", spaceKeyDownHandler);
+}
+
+function spaceKeyDownHandler(event) {
+  if (event.code === "Space") {
+    jump();
+  }
+}
+function spaceKeyDownHandlerDouble(event) {
+  if (event.code === "Space") {
+    doubleJump();
+  }
 }
 
 // Make the charactor jump
@@ -36,12 +48,14 @@ function jump() {
 
     // Animate doubleJump only when jump is animated
     jumpButton.addEventListener("click", doubleJump);
+    document.addEventListener("keydown", spaceKeyDownHandlerDouble);
   }
 
   // Wait 0.4 sec and remove jump animation and doubleJump button activation
   setTimeout(() => {
     biker.classList.remove("animate");
     jumpButton.removeEventListener("click", doubleJump);
+    document.removeEventListener("keydown", spaceKeyDownHandlerDouble);
   }, 400);
 }
 
@@ -64,6 +78,7 @@ function doubleJump() {
   // Wait 0.4 sec and remove doubleJump button activation and its animation
   setTimeout(() => {
     jumpButton.removeEventListener("click", doubleJump);
+    document.removeEventListener("keydown", spaceKeyDownHandlerDouble);
     biker.classList.remove("animateDoubleJump");
   }, 400);
 }
@@ -283,6 +298,7 @@ function fallAction() {
 
   resultContainer.style.display = "grid";
   jumpButton.removeEventListener("click", jump);
+  document.removeEventListener("keydown", spaceKeyDownHandler);
 
   document.getElementById("retry-button").addEventListener("click", () => {
     // Reload the current page
